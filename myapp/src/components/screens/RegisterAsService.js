@@ -447,6 +447,7 @@ const RegisterAsService = ({ navigation }) => {
             >
               <TextInput
                 placeholder="DD/MM/YYYY"
+              
                 value={dob ? dob.toLocaleDateString() : ""}
                 editable={false} // Make it not editable
               />
@@ -694,11 +695,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: "gray",
     padding: normalize(8),
+    // color: 'black', // Ensure placeholder text color
     
     
   },
   textArea: {
     height: normalize(60),
+    //  color: 'black', // Ensure placeholder text color
     
   },
   

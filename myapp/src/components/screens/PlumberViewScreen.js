@@ -10,7 +10,7 @@ import {
   PixelRatio,
   Platform,
   TouchableOpacity,
-  
+
 } from "react-native";
 // import { Linking } from "react-native";
 
@@ -54,6 +54,7 @@ const PlumberViewScreen = ({ navigation }) => {
       setRegistrationData(response.data); // Set registration data in state
     } catch (error) {
       console.error("Error fetching registration data:", error);
+      console.log("Icon name:", registration.name); // Verify icon names
     }
   };
 
@@ -61,10 +62,10 @@ const PlumberViewScreen = ({ navigation }) => {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
-    // Function to handle sorting option change
-    const handleSortChange = (option) => {
-      setSortOption(option);
-    };
+  // Function to handle sorting option change
+  const handleSortChange = (option) => {
+    setSortOption(option);
+  };
 
   // Function to render each registration as a card
   const renderRegistrationCards = () => {
@@ -98,23 +99,30 @@ const PlumberViewScreen = ({ navigation }) => {
 
     return filteredData.map((registration, index) => (
       <View key={index} style={styles.card}>
-    {/* Icons for name, phone number, charge, and location */}
-    <View style={styles.iconContainer}>
-      <Icon name="person" size={15} color="black" style={styles.icon} />
-      <Text style={styles.cardText}>{registration.name}</Text>
-    </View>
-    <View style={styles.iconContainer}>
-      <Icon name="phone" size={15} color="black" style={styles.icon} />
-      <Text style={styles.cardText}>{registration.phoneNumber}</Text>
-    </View>
-     <View style={styles.iconContainer}>
+        {/* Icons for name, phone number, charges, and location */}
+        <View style={styles.iconContainer}>
+          <Icon name="person" size={15} color="black" style={styles.icon} />
+          <Text style={styles.cardText}>{registration.name}</Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <Icon name="phone" size={15} color="black" style={styles.icon} />
+          <Text style={styles.cardText}>{registration.phoneNumber}</Text>
+        </View>
+        {/* <View style={styles.iconContainer}>
       < Icon name="cash" size={15} color="black" style={styles.icon} />
       <Text style={styles.cardText}>{registration.charges}</Text>
-    </View>
-    <View style={styles.iconContainer}>
-      <CommunityIcon name="map-marker" size={15} color="black" style={styles.icon} />
-      <Text style={styles.cardText}>{registration.city}</Text>
-    </View> 
+    </View> */}
+        <View style={styles.iconContainer}>
+          <Icon name="money" size={15} color="black" style={styles.icon} />
+          <Text style={styles.cardText}>{registration.charges}</Text>
+        </View>
+
+        <View style={styles.iconContainer}>
+          <CommunityIcon name="map-marker" size={15} color="black" style={styles.icon} />
+          <Text style={styles.cardText}>{registration.city}</Text>
+        </View>
+        <View></View>
+
 
 
         <View style={styles.buttonContainer}>
@@ -124,19 +132,41 @@ const PlumberViewScreen = ({ navigation }) => {
             color="black"
             onPress={() => handleSend(registration.phoneNumber)}
           />
+
         </View>
       </View>
     ));
   };
 
+  // const handleSend = (phoneNumber) => {
+  //   const defaultMessage = encodeURIComponent("Hello, I am customer I need service regarding repair please contact me or message me...");
+  //   const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${defaultMessage}`;
+
+  //   Linking.canOpenURL(whatsappLink)
+  //     .then((supported) => {
+  //       if (!supported) {
+  //         console.log("WhatsApp is not installed on this device");
+  //       } else {
+  //         return Linking.openURL(whatsappLink);
+  //       }
+  //     })
+  //     .then(() => {
+  //       console.log("WhatsApp opened successfully");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error opening WhatsApp:", error);
+  //     });
+  // };
+
   const handleSend = (phoneNumber) => {
     const defaultMessage = encodeURIComponent("Hello, I am customer I need service regarding repair please contact me or message me...");
     const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${defaultMessage}`;
-
+  
     Linking.canOpenURL(whatsappLink)
       .then((supported) => {
         if (!supported) {
           console.log("WhatsApp is not installed on this device");
+          // Handle fallback or provide user feedback
         } else {
           return Linking.openURL(whatsappLink);
         }
@@ -146,16 +176,18 @@ const PlumberViewScreen = ({ navigation }) => {
       })
       .catch((error) => {
         console.error("Error opening WhatsApp:", error);
+        // Handle error (e.g., show error message to user)
       });
   };
+  
 
   return (
     <View style={{ flex: 1 }}>
       <Header />
-      
+
       <ScrollView contentContainerStyle={styles.container}>
-         <Text style={styles.header}></Text> 
-         <TouchableOpacity
+        <Text style={styles.header}></Text>
+        <TouchableOpacity
           style={styles.searchBoxContainer}
           onPress={() => this.textInput.focus()}
         >
@@ -165,6 +197,7 @@ const PlumberViewScreen = ({ navigation }) => {
             }}
             style={styles.searchBox}
             placeholder="Search Plumbers"
+            placeholderTextColor="gray" // Set placeholder text color
             value={searchQuery}
             onChangeText={handleSearch}
           />
@@ -174,14 +207,14 @@ const PlumberViewScreen = ({ navigation }) => {
             color="black"
             style={styles.searchIcon}
           />
-        </TouchableOpacity> 
+        </TouchableOpacity>
         {registrationData.length === 0 ? (
           <Text>Loading plumber details...</Text>
         ) : (
           renderRegistrationCards()
         )}
       </ScrollView>
-    
+
       <Footer />
     </View>
   );
@@ -196,7 +229,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap", // Add this if you want the cards to wrap to the next line when they reach the edge of the screen
     // textAlign: "left",
     paddingBottom: 100,
-    
+
+
   },
   header: {
     fontWeight: "bold",
@@ -215,14 +249,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     textAlign: "left",
+
+
   },
   searchIcon: {
     padding: normalize(10),
+
+
   },
   searchBox: {
     flex: 1,
     paddingVertical: normalize(10),
     paddingHorizontal: normalize(5),
+
   },
   card: {
     width: windowWidth * 0.4,
@@ -233,11 +272,12 @@ const styles = StyleSheet.create({
     borderRadius: normalize(1),
     padding: normalize(6),
     alignItems: "flex-start",
-    backgroundColor:"#d3d3d3",
+    backgroundColor: "#d3d3d3",
     shadowOpacity: 20.25, // Shadow opacity
     shadowRadius: 30.84, // Shadow blur radius
     elevation: 15, // Elevation for Android
     shadowColor: "green", // Shadow color
+
     shadowOffset: {
       width: 50,
       height: 2,
@@ -252,21 +292,26 @@ const styles = StyleSheet.create({
   cardText: {
     marginBottom: normalize(1),
     textAlign: "right",
-  
+    color: "black"
+
   },
   buttonContainer: {
     alignItems: "flex-end",
     width: "100%",
     marginTop: normalize(10),
-  
+
+
   },
   iconContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: normalize(2),
+
+
   },
   icon: {
     marginRight: normalize(5),
+
   },
 
 });

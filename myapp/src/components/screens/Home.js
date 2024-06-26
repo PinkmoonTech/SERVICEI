@@ -28,21 +28,27 @@ const Home = ({ navigation }) => {
           }}
           style={styles.logo} // Use the logo style from styles
         />
-        <Text style={styles.serviceText}>
+        {/* <Text style={styles.serviceText}>
           Service <Text style={styles.italic}>i</Text>
-        </Text>
+        </Text> */}
+         {/* <Text style={styles.serviceText}>
+      Service <Text style={styles.italic}>i</Text><Text style={styles.superscript}>R</Text>
+    </Text> */}
+    <Text style={styles.serviceText}>
+      Service <Text style={styles.italic}>i</Text><View style={styles.superscriptContainer}><Text style={styles.superscript}>R</Text></View>
+    </Text>
 
         <View style={styles.buttonContainer}>
-        <TouchableOpacity
-      style={styles.iconButton}
-      onPress={() => navigation.navigate("Login")}
-    >
-       <Icon name="account-circle" size={24} color="white" />
-    </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <Icon name="account-circle" size={24} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
 
-       <View style={styles.middleContent}>
+      <View style={styles.middleContent}>
         <ImageBackground
           source={{
             uri: "https://i.ibb.co/XL83qt8/plumberimg.jpg",
@@ -50,7 +56,7 @@ const Home = ({ navigation }) => {
           style={styles.middleImage}
         >
 
-{/* <View style={styles.middleContent}>
+          {/* <View style={styles.middleContent}>
         <ImageBackground
           source={{
             uri: "https://i.ibb.co/3cFNMJJ/image.jpg",
@@ -58,11 +64,11 @@ const Home = ({ navigation }) => {
           style={styles.middleImage}
         > */}
 
-          
+
           <Text style={styles.overlayText}>A Platform for Customer to enable right service</Text>
         </ImageBackground>
       </View>
-      <Footer/>
+      <Footer />
     </View>
   );
 };
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     // paddingTop:Platform.OS ==="android"? StatusBar.currentHeight:0
-    
+
   },
   header: {
     width: "100%",
@@ -90,19 +96,20 @@ const styles = StyleSheet.create({
     height: 40, // Increased height
     // marginRight: 'auto',
     paddingHorizontal: 1,
-    marginLeft:-18,
+    marginLeft: -18,
     // paddingRight:2
-    marginTop:1
+    marginTop: 1
   },
   iconButton: {
-    backgroundColor: "#007bff", 
+    backgroundColor: "#007bff",
     borderRadius: 5,
     padding: 10,
-    paddingLeft:20,
-    paddingRight:20
+    paddingLeft: 20,
+    paddingRight: 20
   },
-
  
+
+
   middleContent: {
     flex: 1,
     justifyContent: "center",
@@ -110,17 +117,17 @@ const styles = StyleSheet.create({
     width: "300%",
     // paddingHorizontal: 80,
     // paddingVertical:1,
-    marginLeft:270,
+    marginLeft: 270,
     // marginTop:0,
     // marginBottom:"10"
-    marginBottom:15
+    marginBottom: 15
   },
- 
+
   middleImage: {
     width: "55%", // Adjusted width to center horizontally
     aspectRatio: 10 / 6, //height will be "30%" // Adjusted height to center vertically
-  //  alignItems:"center",
-  
+    //  alignItems:"center",
+
   },
   overlayText: {
     color: "#c1205f",
@@ -129,22 +136,50 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 20,
     // marginBottom:60,
     // paddingBottom:50
-    paddingTop:10,
-    paddingRight:290,
-    paddingLeft:15,
-    fontWeight:"bold"
-   
+    paddingTop: 10,
+    paddingRight: 290,
+    paddingLeft: 15,
+    fontWeight: "bold"
+
+  },
+  // italic: {
+  //   fontStyle: "italic",
+  //   fontSize: 20,
+  //   alignItems: "center",
+  // },
+  // serviceText: {
+  //   fontSize: 20,
+  //   marginRight: 5,
+  //   color: "green"
+  // },
+  // superscript: {
+  //   fontSize: 12, // Smaller font size for the superscript
+  //   lineHeight: 20, // Adjust line height if needed
+  //   position: 'relative',
+  //   top: -15, // Adjust top position for the superscript effect
+  // },
+  serviceText: {
+    fontSize: 25, // Adjust your main text size
+    // Other styles for serviceText
+    color: "green"
   },
   italic: {
-    fontStyle: "italic",
-    fontSize: 20,
-    alignItems: "center",
+    fontStyle: 'italic', // Italic style for the "i"
   },
-  serviceText: {
-    fontSize: 25,
-    marginRight: 5,
-    color:"green"
+  superscriptContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    
   },
+  superscript: {
+    fontSize: 12, // Smaller font size for the superscript
+    lineHeight: 20, // Adjust line height if needed
+    position: 'relative',
+    top: -5, // Adjust top position for the superscript effect
+    color: "green"
+  },
+  
+
   // footersContainer: {
   //   width: "100%",
   // },
