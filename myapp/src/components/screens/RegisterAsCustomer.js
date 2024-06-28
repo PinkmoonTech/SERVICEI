@@ -189,6 +189,7 @@ const RegisterAsCustomer = ({ navigation }) => {
               placeholderTextColor="gray" // Set placeholder text color
               value={idNumber}
               onChangeText={setIdNumber}
+              keyboardType="numeric"
             />
 
             {/* Add your submit button or other UI components here */}

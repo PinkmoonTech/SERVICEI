@@ -588,6 +588,7 @@ const RegisterAsService = ({ navigation }) => {
               placeholderTextColor="gray" // Set placeholder text color
               value={idNumber}
               onChangeText={setIdNumber}
+               keyboardType="phone-pad"
             />
             {/* <View style={styles.uploadContainer}>
               <Button title="Upload ID Proof" onPress={handleIdProofUpload} />

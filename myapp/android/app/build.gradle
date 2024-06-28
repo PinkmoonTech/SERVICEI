@@ -100,27 +100,27 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-        }
-    }
-     flavorDimensions "environment"
-     productFlavors {
-        qa {
-            dimension "environment"
-            resValue "string", "app_name", "ServiceI_qa"
-            applicationId "com.ServiceI"
-            signingConfig signingConfigs.release
-        }
-        uat {
-            dimension "environment"
-            resValue "string", "app_name", "ServiceI_uat"
-            applicationId "com.ServiceI"
-            signingConfig signingConfigs.release
-        }
-         prod {
-            dimension "environment"
-            resValue "string", "app_name", "ServiceI_prod"
-            applicationId "com.ServiceI"
-            signingConfig signingConfigs.release
+    //     }
+    // }
+    //  flavorDimensions "environment"
+    //  productFlavors {
+    //     qa {
+    //         dimension "environment"
+    //         resValue "string", "app_name", "ServiceI_qa"
+    //         applicationId "com.ServiceI"
+    //         signingConfig signingConfigs.release
+    //     }
+    //     uat {
+    //         dimension "environment"
+    //         resValue "string", "app_name", "ServiceI_uat"
+    //         applicationId "com.ServiceI"
+    //         signingConfig signingConfigs.release
+    //     }
+    //      prod {
+    //         dimension "environment"
+    //         resValue "string", "app_name", "ServiceI_prod"
+    //         applicationId "com.ServiceI"
+    //         signingConfig signingConfigs.release
         }
         
     }
