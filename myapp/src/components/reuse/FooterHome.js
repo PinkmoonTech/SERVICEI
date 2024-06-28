@@ -3,11 +3,12 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-const Footer = () => {
+const FooterHome = () => {
   return (
     <View style={styles.footer}>
       <Text style={styles.footerText}>
         <Text style={styles.link} onPress={() => console.log('Redirect to PINKMOON Technologies')}>
+          A product of PINKMOON TECHNOLOGIES
           Terms and Conditions | Privacy Policy |cookies policy
           ©2021.Service i.All Rights Reserved
         </Text>
@@ -35,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Footer;
+export default FooterHome;

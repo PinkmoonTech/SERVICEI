@@ -97,6 +97,7 @@ import Home from "./components/screens/Home";
 import LoginPage from "./components/screens/loginpage";
 import RegisterAsCustomer from "./components/screens/RegisterAsCustomer";
 import CustomerCards from "./components/screens/CustomerCards";
+import FooterHome from "./components/reuse/FooterHome";
 
 
 const Stack = createStackNavigator();
@@ -118,6 +119,8 @@ const App = () => {
           <Stack.Screen name="RegisterAsCustomer" component={RegisterAsCustomer} options={{ headerShown: true }} />
           <Stack.Screen name="CustomerCards" component={CustomerCards}  options={{ headerShown: true }}/>
           <Stack.Screen name="Service i" component={PlumberViewScreen}  options={{ headerShown: true}}/>
+          <Stack.Screen name="FooterHome" component={FooterHome}  options={{ headerShown: true}}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

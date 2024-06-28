@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import Footer from '../reuse/Footer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FooterHome from "../reuse/FooterHome";
+
 
 // import { MaterialIcon } from "@expo/vector-icons";
 
@@ -68,7 +70,7 @@ const Home = ({ navigation }) => {
           <Text style={styles.overlayText}>A Platform for Customer to enable right service</Text>
         </ImageBackground>
       </View>
-      <Footer />
+      <FooterHome/>
     </View>
   );
 };
