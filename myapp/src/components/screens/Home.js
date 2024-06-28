@@ -201,6 +201,13 @@ const images = [
   require('../../assets/images/ph4.jpg'),
   require('../../assets/images/ph5.jpg'),
 ];
+const images1 = [
+  require('../../assets/images/ele1.jpg'),
+  require('../../assets/images/ele2.jpg'),
+  require('../../assets/images/ele3.jpg'),
+  require('../../assets/images/ele4.jpg'),
+  require('../../assets/images/ele5.jpg'),
+];
 
 const {width} = Dimensions.get('window'); // Get the device width
 
@@ -259,6 +266,8 @@ const Home = ({navigation}) => {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.middleContent}>
+            <Text style={styles.title}>Maintenance Experts</Text>
+            <Text style={styles.title2}>Simplified</Text>
             <ImageBackground
               source={{
                 uri: 'https://i.ibb.co/XL83qt8/plumberimg.jpg',
@@ -268,6 +277,11 @@ const Home = ({navigation}) => {
                 A Platform for Customer to enable right service
               </Text>
             </ImageBackground>
+            <Text style={styles.description}>
+              HomeApp ensures all your home maintenance needs are met. We offer
+              services across various categories, supported by over 1000 skilled
+              professional vendors.
+            </Text>
           </View>
 
           <View style={styles.imageContainer}>
@@ -292,7 +306,6 @@ const Home = ({navigation}) => {
               activeColor="#007bff"
             />
           </View>
-
           <View style={styles.imageContainer}>
             <ScrollView
               horizontal
@@ -300,17 +313,17 @@ const Home = ({navigation}) => {
               showsHorizontalScrollIndicator={false}
               onScroll={handleScroll}
               scrollEventThrottle={16}>
-              {images.map((image, index) => (
+              {images1.map((images1, index) => (
                 <FastImage
                   key={index}
-                  source={image}
+                  source={images1}
                   style={styles.image}
                   resizeMode={FastImage.resizeMode.cover}
                 />
               ))}
             </ScrollView>
             <Dots
-              length={images.length}
+              length={images1.length}
               active={currentImageIndex}
               activeColor="#007bff"
             />
@@ -327,6 +340,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f0f0f0',
     alignItems: 'center',
+    backgroundColor: 'lightblue',
   },
   header: {
     width: '100%',
@@ -361,8 +375,9 @@ const styles = StyleSheet.create({
   },
   middleImage: {
     width: '100%',
-    aspectRatio: 10 / 8,
+    aspectRatio: 10 / 9,
   },
+
   overlayText: {
     color: '#c1205f',
     fontSize: 22,
@@ -398,9 +413,29 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width, // Ensure each image takes up the full width
-    height: 150,
+    height: 200,
     borderRadius: 10,
     marginHorizontal: 5, // Provide space between images
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    paddingBottom: 0,
+  },
+  title2: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    paddingBottom: 5,
+  },
+  description: {
+    fontSize: 16,
+    color: '#000', // Change color as needed
+    textAlign: 'center',
+    margin: 20,
   },
 });
 
