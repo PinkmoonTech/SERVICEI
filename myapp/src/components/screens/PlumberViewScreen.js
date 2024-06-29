@@ -3,16 +3,16 @@ import {
   View,
   Text,
   TextInput,
-  Linking,
   StyleSheet,
   ScrollView,
   Dimensions,
   PixelRatio,
   Platform,
   TouchableOpacity,
+  
 
 } from "react-native";
-// import { Linking } from "react-native";
+import { Linking } from "react-native";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -182,31 +182,33 @@ const PlumberViewScreen = ({ navigation }) => {
 
 
   const handleSend = (phoneNumber) => {
-    const defaultMessage = encodeURIComponent("Hello, I am customer I need service regarding repair please contact me or message me...");
-    const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${defaultMessage}`;
+  const defaultMessage = "Hello, I am customer I need service regarding repair please contact me or message me...";
+  const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(defaultMessage)}`;
+
+  Linking.canOpenURL(whatsappLink)
+    .then((supported) => {
+      if (!supported) {
+        console.log("WhatsApp is not supported on this device");
+        // Handle fallback or provide user feedback
+      } else {
+        Linking.openURL(whatsappLink)
+          .then(() => {
+            console.log("WhatsApp opened successfully");
+            // Handle success (e.g., analytics tracking)
+          })
+          .catch((error) => {
+            console.error("Error opening WhatsApp:", error);
+            // Handle error (e.g., show error message to user)
+          });
+      }
+    })
+    .catch((error) => {
+      console.error("Error checking if WhatsApp is supported:", error);
+      // Handle error (e.g., show error message to user)
+    });
+};
   
-    Linking.canOpenURL(whatsappLink)
-      .then((supported) => {
-        if (!supported) {
-          console.log("WhatsApp is not installed on this device");
-          // Handle fallback or provide user feedback
-        } else {
-          Linking.openURL(whatsappLink)
-            .then(() => {
-              console.log("WhatsApp opened successfully");
-              // Handle success (e.g., analytics tracking)
-            })
-            .catch((error) => {
-              console.error("Error opening WhatsApp:", error);
-              // Handle error (e.g., show error message to user)
-            });
-        }
-      })
-      .catch((error) => {
-        console.error("Error checking if WhatsApp is supported:", error);
-        // Handle error (e.g., show error message to user)
-      });
-  };
+  
   
 
   return (

@@ -35,7 +35,7 @@ const normalize = (size) => {
 };
 
 const RegisterAsService = ({ navigation }) => {
-  const [registrationType, setRegistrationType] = useState("");
+  const [registrationType, setRegistrationType] = useState("Plumber");
   const [name, setName] = useState("");
   const [dob, setDob] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -44,11 +44,11 @@ const RegisterAsService = ({ navigation }) => {
   const [confirmPin, setConfirmPin] = useState("");
   const [altPhoneNumber, setAltPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
+  const [country, setCountry] = useState("India");
+  const [state, setState] = useState("Andhra Pradesh");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [identityCard, setIdentityCard] = useState(""); // Default value
+  const [identityCard, setIdentityCard] = useState("Aadhaar"); // Default value
   const [idNumber, setIdNumber] = useState("");
   const [idProofImage, setIdProofImage] = useState(""); // Image URI
   const [charges, setCharges] = useState("");
@@ -309,7 +309,7 @@ const RegisterAsService = ({ navigation }) => {
   const handleRegistration = async () => {
     setError(''); // Clear previous errors
     // Validate required fields
-    if (!registrationType||!name ||!charges ||!dob ||!email|| !phoneNumber ||!identityCard ||!country ||!state|| !pin ||!city || !confirmPin || !address || !idNumber) {
+    if (!name ||!charges ||!dob ||!email|| !phoneNumber  || !pin ||!city || !confirmPin || !address || !idNumber) {
       setError('Please fill out all required fields.');
       return;
     }
@@ -331,6 +331,11 @@ const RegisterAsService = ({ navigation }) => {
       setError("id number must be 12 digits long");
       return;
     }
+    if (!/\b[A-Za-z0-9._%+-]+@gmail\.com\b/.test(email)) {
+      setError('Please enter a valid email address ending with gmail.com.');
+      return;
+    }
+    
    
   
     const formData = new FormData();
@@ -405,6 +410,23 @@ const RegisterAsService = ({ navigation }) => {
       const result = await response.json();
       if (response.ok) {
         alert('Registration successful');
+        // Clear form fields after successful submission
+      setName('');
+      setDob(new Date());
+      setPhoneNumber('');
+      setPin('');
+      setConfirmPin('');
+      setAltPhoneNumber('');
+      setEmail('');
+      setCountry('India');
+      setState('Andhra Pradesh');
+      setCity('');
+      setAddress('');
+      setIdentityCard('Aadhaar');
+      setIdNumber('');
+      setCharges('');
+      setPhoto('');
+      setError('');
       } else {
         setError(result.error || 'Registration failed');
       }
