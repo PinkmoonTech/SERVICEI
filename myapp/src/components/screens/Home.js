@@ -208,6 +208,14 @@ const images1 = [
   require('../../assets/images/ele4.jpg'),
   require('../../assets/images/ele5.jpg'),
 ];
+const images2 = [
+  require('../../assets/images/pa1.jpg'),
+  require('../../assets/images/pa2.jpg'),
+  require('../../assets/images/pa3.jpg'),
+  require('../../assets/images/pa4.jpg'),
+  require('../../assets/images/pa5.jpg'),
+];
+
 
 const {width} = Dimensions.get('window'); // Get the device width
 
@@ -278,8 +286,8 @@ const Home = ({navigation}) => {
               </Text>
             </ImageBackground>
             <Text style={styles.description}>
-              HomeApp ensures all your home maintenance needs are met. We offer
-              services across various categories, supported by over 1000 skilled
+              Service i ensures all your home maintenance needs are met. We offer
+              services across various categories, supported by over 1000+ skilled
               professional vendors.
             </Text>
           </View>
@@ -324,6 +332,28 @@ const Home = ({navigation}) => {
             </ScrollView>
             <Dots
               length={images1.length}
+              active={currentImageIndex}
+              activeColor="#007bff"
+            />
+          </View>
+          <View style={styles.imageContainer}>
+            <ScrollView
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              onScroll={handleScroll}
+              scrollEventThrottle={16}>
+              {images2.map((images2, index) => (
+                <FastImage
+                  key={index}
+                  source={images2}
+                  style={styles.image}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
+              ))}
+            </ScrollView>
+            <Dots
+              length={images2.length}
               active={currentImageIndex}
               activeColor="#007bff"
             />
@@ -422,18 +452,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    paddingBottom: 0,
+   paddingBottom:2
   },
   title2: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    paddingBottom: 5,
+    paddingBottom:10
+   
   },
   description: {
     fontSize: 16,
-    color: '#000', // Change color as needed
+    color: 'black', // Change color as needed
     textAlign: 'center',
     margin: 20,
   },

@@ -158,6 +158,29 @@ const PlumberViewScreen = ({ navigation }) => {
   //     });
   // };
 
+  // const handleSend = (phoneNumber) => {
+  //   const defaultMessage = encodeURIComponent("Hello, I am customer I need service regarding repair please contact me or message me...");
+  //   const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${defaultMessage}`;
+  
+  //   Linking.canOpenURL(whatsappLink)
+  //     .then((supported) => {
+  //       if (!supported) {
+  //         console.log("WhatsApp is not installed on this device");
+  //         // Handle fallback or provide user feedback
+  //       } else {
+  //         return Linking.openURL(whatsappLink);
+  //       }
+  //     })
+  //     .then(() => {
+  //       console.log("WhatsApp opened successfully");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error opening WhatsApp:", error);
+  //       // Handle error (e.g., show error message to user)
+  //     });
+  // };
+
+
   const handleSend = (phoneNumber) => {
     const defaultMessage = encodeURIComponent("Hello, I am customer I need service regarding repair please contact me or message me...");
     const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${defaultMessage}`;
@@ -168,14 +191,19 @@ const PlumberViewScreen = ({ navigation }) => {
           console.log("WhatsApp is not installed on this device");
           // Handle fallback or provide user feedback
         } else {
-          return Linking.openURL(whatsappLink);
+          Linking.openURL(whatsappLink)
+            .then(() => {
+              console.log("WhatsApp opened successfully");
+              // Handle success (e.g., analytics tracking)
+            })
+            .catch((error) => {
+              console.error("Error opening WhatsApp:", error);
+              // Handle error (e.g., show error message to user)
+            });
         }
       })
-      .then(() => {
-        console.log("WhatsApp opened successfully");
-      })
       .catch((error) => {
-        console.error("Error opening WhatsApp:", error);
+        console.error("Error checking if WhatsApp is supported:", error);
         // Handle error (e.g., show error message to user)
       });
   };

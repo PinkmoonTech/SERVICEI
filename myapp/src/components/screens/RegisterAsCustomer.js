@@ -75,6 +75,10 @@ const RegisterAsCustomer = ({ navigation }) => {
       setError("PIN must be 6 digits long");
       return;
     }
+    if (idNumber.length !== 12) {
+      setError("id number must be 12 digits long");
+      return;
+    }
    
 
     const requestBody = {
@@ -131,7 +135,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Name"
+              placeholder="Name *"
               placeholderTextColor="gray" // Set placeholder text color
               value={name}
               onChangeText={setName}
@@ -139,7 +143,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Phone Number"
+              placeholder="Phone Number *"
               placeholderTextColor="gray" // Set placeholder text color
               value={phoneNumber}
               onChangeText={setPhoneNumber}
@@ -148,7 +152,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Pin"
+              placeholder="Pin *"
               placeholderTextColor="gray" // Set placeholder text color
               value={pin}
               onChangeText={setPin}
@@ -157,7 +161,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Confirm Pin"
+              placeholder="Confirm Pin *"
               placeholderTextColor="gray" // Set placeholder text color
               value={confirmPin}
               onChangeText={setConfirmPin}
@@ -175,7 +179,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={[styles.input, styles.textArea]}
-              placeholder="Address"
+              placeholder="Address *"
               placeholderTextColor="gray" // Set placeholder text color
               value={address}
               onChangeText={setAddress}
@@ -185,7 +189,7 @@ const RegisterAsCustomer = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="ID Number"
+              placeholder="ID Number *"
               placeholderTextColor="gray" // Set placeholder text color
               value={idNumber}
               onChangeText={setIdNumber}

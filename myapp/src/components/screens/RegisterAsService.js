@@ -308,6 +308,30 @@ const RegisterAsService = ({ navigation }) => {
   
   const handleRegistration = async () => {
     setError(''); // Clear previous errors
+    // Validate required fields
+    if (!registrationType||!name ||!charges ||!dob ||!email|| !phoneNumber ||!identityCard ||!country ||!state|| !pin ||!city || !confirmPin || !address || !idNumber) {
+      setError('Please fill out all required fields.');
+      return;
+    }
+
+    // Check if PIN and Confirm PIN match
+    if (pin !== confirmPin) {
+      setError('PIN and Confirm PIN must match.');
+      return;
+    }
+    if (phoneNumber.length !== 10) {
+      setError("Phone number must be 10 digits long");
+      return;
+    }
+    if (pin.length !== 6 || confirmPin.length !== 6) {
+      setError("PIN must be 6 digits long");
+      return;
+    }
+    if (idNumber.length !== 12) {
+      setError("id number must be 12 digits long");
+      return;
+    }
+   
   
     const formData = new FormData();
     formData.append('registrationType', registrationType);
@@ -434,7 +458,7 @@ const RegisterAsService = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Name"
+              placeholder="Name *"
               placeholderTextColor="gray" // Set placeholder text color
               value={name}
               onChangeText={setName}
@@ -465,7 +489,7 @@ const RegisterAsService = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Phone Number"
+              placeholder="Phone Number*"
               placeholderTextColor="gray" // Set placeholder text color
               value={phoneNumber}
               onChangeText={setPhoneNumber}
@@ -473,7 +497,7 @@ const RegisterAsService = ({ navigation }) => {
             />
             <TextInput
               style={styles.input}
-              placeholder="pin"
+              placeholder="pin *"
               placeholderTextColor="gray" // Set placeholder text color
               value={pin}
               onChangeText={setPin}
@@ -481,7 +505,7 @@ const RegisterAsService = ({ navigation }) => {
             />
             <TextInput
               style={styles.input}
-              placeholder="confirmPin"
+              placeholder="confirmPin *"
               placeholderTextColor="gray" // Set placeholder text color
               value={confirmPin}
               onChangeText={setConfirmPin}
@@ -497,11 +521,12 @@ const RegisterAsService = ({ navigation }) => {
             />
             <TextInput
               style={styles.input}
-              placeholder="Email"
+              placeholder="Email *"
               placeholderTextColor="gray" // Set placeholder text color
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
+              
             />
             <View style={styles.inputContainer}>
               <Picker
@@ -555,7 +580,7 @@ const RegisterAsService = ({ navigation }) => {
             </View>
             <TextInput
               style={styles.input}
-              placeholder="location (ex:vijayawada)"
+              placeholder="location (ex:vijayawada) *"
               placeholderTextColor="gray" // Set placeholder text color
               value={city}
               onChangeText={setCity}
@@ -563,7 +588,7 @@ const RegisterAsService = ({ navigation }) => {
 
             <TextInput
               style={[styles.input, styles.textArea]}
-             placeholder="Home Address                                        Street name"
+             placeholder="Home Address (ex:street name,door number)*"
              placeholderTextColor="gray" // Set placeholder text color
               value={address}
               onChangeText={setAddress}
@@ -584,7 +609,7 @@ const RegisterAsService = ({ navigation }) => {
             </View>
             <TextInput
               style={styles.input}
-              placeholder="ID Number"
+              placeholder="ID Number (ex:Aadhaar number) *"
               placeholderTextColor="gray" // Set placeholder text color
               value={idNumber}
               onChangeText={setIdNumber}
@@ -601,7 +626,7 @@ const RegisterAsService = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Charges per day (ex:250 ₹)"
+              placeholder="Charges per day (ex:250 ₹) *"
               placeholderTextColor="gray" // Set placeholder text color
               value={charges}
               onChangeText={setCharges}
@@ -695,7 +720,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "gray",
-    padding: normalize(8),
+    padding: normalize(0),
     // color: 'black', // Ensure placeholder text color
     
     
